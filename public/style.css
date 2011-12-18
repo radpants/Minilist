@@ -1,0 +1,195 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+body{
+	color: #333;
+	font-family: "Tahoma", sans-serif;
+	margin: 10% auto;
+	padding: 0% 10%;
+	width: 80%;
+}
+
+#lists{
+	float:left;
+	width: 31%;
+	margin-right: 2%;
+}
+	
+@media screen and (min-width:500px){
+	header{
+		margin-bottom: 25px;
+	}
+
+	h1{		
+		color: #000;
+		font-size: 48px;	
+		margin: 0px;
+		padding: 0px;	
+	}
+}
+
+@media screen and (max-width:500px){
+	header{
+		margin-bottom: 15px;
+	}
+
+	h1{		
+		color: #000;
+		font-size: 20px;	
+		margin: 0px;
+		padding: 0px;	
+	}
+}
+	
+	
+	
+	header a{
+		border-bottom: 3px solid #ddd;
+		color: #999;
+		font-size: 12px;
+		font-weight: bold;
+		text-decoration: none;
+		padding-bottom: 3px;
+		margin: 14px 0px 0px 3px;
+	}
+		header a:hover{
+			border-color: #666;
+			color: #000;
+		}
+		nav a{
+			border-bottom: 1px solid #eee;
+			color: #333;
+			display: block;
+			font-size: 13px;
+			text-decoration: none;
+			padding: 5px;
+		}
+			nav a:hover{
+				color: #000;
+			}
+			
+			nav a.selected{
+				background: #f8f8f8;
+				color: #000;
+				font-weight: bold;
+			}
+			
+			nav a span{
+				display: none;
+				float: right;
+				font-weight: bold;
+			}
+				nav a:hover span{
+					display: inline;
+				}
+				nav a span:hover{
+					color: #c00;
+				}
+			
+			#lists input[type="text"]{
+				border: 1px solid #ccc;
+				font-family: "Tahoma", sans-serif;
+				padding: 5px;
+				margin: 0px 0px 5px 0px;
+				width: 97%;
+			}
+
+			#lists input:focus{
+				border-color: #0ae;
+				outline: none;
+			}
+#tasks{
+	float: left;
+	margin: 0px;
+	width: 66%;
+}
+
+li{ 
+	border-bottom: 1px solid #eee;
+	cursor: pointer;
+	font-size: 12px;
+	list-style: none;
+	padding: 7px 5px;
+	margin: 0px;
+}
+	
+	li:hover{
+		text-decoration: line-through;
+	}
+	
+	li.completed{
+		color: #ccc;
+		text-decoration: line-through;
+	}
+	
+	#tasks input[type="text"]{
+		border: 1px solid #ccc;
+		font-family: "Tahoma", sans-serif;
+		padding: 5px;
+		width: 100%;
+		margin: 0px 0px 5px 0px;
+	}
+	
+	#tasks input:focus{
+		border-color: #0ae;
+		outline: none;
+	}
+	
+#login, #signup{
+	float: left;
+	margin: 0px 0px 50px 0px;
+	padding: 0;
+	overflow: hidden;
+	width: 300px;
+}
+
+h2{
+	font-size:14px;
+	text-transform: capitalize;
+	margin: 0px 0px 10px 0px;
+}
+
+label{
+	clear: left;
+	float:left;
+	font-size: 12px;
+	margin: 0px 0px 10px 0px;
+	width: 70px;
+}
+
+#login input[type="text"], #login input[type="password"], #signup input[type="text"], #signup input[type="password"]{
+	border: 1px solid #ccc;
+	font-size: 14px;
+	float: left;
+	width: 150px;
+	outline:none;
+}
+	#login input:focus, #signup input:focus{
+		border-color: #0ae;
+	}
+	
+input[type="submit"]{
+	clear: both;
+	display: block;
+}
+
+.error{
+	border-left: 4px solid #c00;
+	color: #c00;
+	font-size: 12px;
+	margin: 10px 0px;
+	padding-left: 5px;
+}
+
+p{
+	font-size: 12px;
+	margin: 10px 0px;
+}
+
+
+.required:after{
+	font-weight: bold;
+	content: "*";	
+}
