@@ -5,8 +5,8 @@ function list_markup(name, id){
 }
 
 function task_markup(name, id, completed){
-	if(completed) return "<li class=\"completed\" data-id=\"" + id + "\">" + name + "</li>";
-	else return "<li data-id=\"" + id + "\">" + name + "</li>";
+	if(completed) return "<li class=\"completed\" data-id=\"" + id + "\">" + name + "<span>x</span></li>";
+	else return "<li data-id=\"" + id + "\">" + name + "<span>x</span></li>";
 }
 
 $(function(){
@@ -17,6 +17,8 @@ $(function(){
 	$tasks_list = $("#tasks ul");
 	$list = $("nav a");
 	$task = $("li");
+	$list_delete_button = $("nav a span");
+	$task_delete_button = $("li span");
 	
 	var selectedListId = -1;
 	
@@ -70,6 +72,7 @@ $(function(){
 	})
 	
 	$list.live("click", function(e){
+		if( $(e.target).text() == "x" ) return; // not if we clicked the 'x'
 		e.preventDefault();
 		selectList($(this).data("id"));
 	});
@@ -91,6 +94,36 @@ $(function(){
 			}
 		});
 		
+	});
+	
+	$list_delete_button.live("click", function(e){
+		e.preventDefault();
+		var $item = $(this).parent();
+		var id = $(this).parent().data("id");
+		$.ajax({
+			type: "POST",
+			url: "/list/destroy/" + id,
+			dataType: "json"
+		}).done(function(r){
+			if( r.error == null ){
+				$item.slideUp(300, function(){ $item.remove(); });
+			}
+		})
+	});
+	
+	$task_delete_button.live("click", function(e){
+		e.preventDefault();
+		var $item = $(this).parent();
+		var id = $(this).parent().data("id");
+		$.ajax({
+			type: "POST",
+			url: "/task/destroy/" + id,
+			dataType: "json"
+		}).done(function(r){
+			if( r.error == null ){
+				$item.slideUp(300, function(){ $item.remove(); });
+			}
+		})
 	});
 	
 	function selectList(id){

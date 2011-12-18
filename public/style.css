@@ -124,6 +124,21 @@ li{
 		text-decoration: line-through;
 	}
 	
+	li span{
+		display: none;
+		float: right;
+		font-weight: bold;
+		text-decoration: none;
+	}
+		li:hover span{
+			display: inline;
+			text-decoration: none;
+		}
+		li span:hover{
+			color: #c00;
+			text-decoration: none;
+		}
+	
 	#tasks input[type="text"]{
 		border: 1px solid #ccc;
 		font-family: "Tahoma", sans-serif;

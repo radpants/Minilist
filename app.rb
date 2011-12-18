@@ -7,7 +7,7 @@ require 'pp'
 
 configure do 
   $ROOT_DIR = "#{File.expand_path(File.dirname(__FILE__))}"
-  DataMapper.setup(:default, "sqlite:////#{$ROOT_DIR}database.sqlite")
+  DataMapper.setup(:default, "sqlite:///#{$ROOT_DIR}/database.sqlite")
   Dir.glob("#{$ROOT_DIR}/models/*.rb").each do |f|
     require f
   end
@@ -104,7 +104,25 @@ end
 # - destroy ------------------------------------------------------------------
 
 post '/task/destroy/:id' do
-  
+  return { :error => "Error: You are not logged in" }.to_json unless logged_in?
+  @task = Task.get(params[:id])
+  return { :error => "Error: No task to delete with id of #{params[:id]}" }.to_json if @task.nil?
+  if @task.destroy!
+    return { :error => nil }.to_json
+  else
+    return { :error => "Error: Could not destroy that task for some reason" }.to_json
+  end  
+end
+
+post '/list/destroy/:id' do
+  return { :error => "Error: You are not logged in" }.to_json unless logged_in?
+  @list = List.get(params[:id])
+  return { :error => "Error: No list to delete with id of #{params[:id]}" }.to_json if @list.nil?
+  if @list.destroy!
+    return { :error => nil }.to_json
+  else
+    return { :error => "Error: Could not destroy that list for some reason" }.to_json
+  end
 end
   
 
